@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data-map xmlns="http://cayenne.apache.org/schema/10/modelMap"
+	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="http://cayenne.apache.org/schema/10/modelMap https://cayenne.apache.org/schema/10/modelMap.xsd"
+	 project-version="10">
+	<property name="defaultPackage" value="it.xtro"/>
+	<db-entity name="xt_container">
+		<db-attribute name="flagActive" type="TINYINT" isMandatory="true" length="1"/>
+		<db-attribute name="id_xt_container" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="theExtras" type="CLOB"/>
+		<db-attribute name="the_name" type="VARCHAR" isMandatory="true" length="255"/>
+	</db-entity>
+	<obj-entity name="XTContainer" className="it.xtro.XTContainer" dbEntityName="xt_container">
+		<obj-attribute name="flagActive" type="boolean" db-attribute-path="flagActive"/>
+		<obj-attribute name="id" type="int" db-attribute-path="id_xt_container"/>
+		<obj-attribute name="theExtras" type="java.lang.String" db-attribute-path="theExtras"/>
+		<obj-attribute name="theName" type="java.lang.String" db-attribute-path="the_name"/>
+	</obj-entity>
+	<cgen xmlns="http://cayenne.apache.org/schema/10/cgen">
+		<destDir>.</destDir>
+		<mode>entity</mode>
+		<template>templates/v4_1/subclass.vm</template>
+		<superTemplate>templates/v4_1/superclass.vm</superTemplate>
+		<template>templates/v4_1/subclass.vm</template>
+		<superTemplate>templates/v4_1/superclass.vm</superTemplate>
+		<embeddableTemplate>templates/v4_1/embeddable-subclass.vm</embeddableTemplate>
+		<embeddableSuperTemplate>templates/v4_1/embeddable-superclass.vm</embeddableSuperTemplate>
+		<queryTemplate>templates/v4_1/datamap-subclass.vm</queryTemplate>
+		<querySuperTemplate>templates/v4_1/datamap-superclass.vm</querySuperTemplate>
+		<outputPattern>*.java</outputPattern>
+		<makePairs>true</makePairs>
+		<usePkgPath>true</usePkgPath>
+		<overwrite>false</overwrite>
+		<createPropertyNames>false</createPropertyNames>
+		<createPKProperties>false</createPKProperties>
+		<client>false</client>
+	</cgen>
+</data-map>
